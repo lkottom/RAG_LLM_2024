@@ -5,4 +5,4 @@ pinecone-client
 langchain-pinecone
 python-dotenv
 selenium
-
+sentence-transformers
