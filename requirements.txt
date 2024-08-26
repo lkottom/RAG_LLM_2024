@@ -1,8 +1,8 @@
 streamlit
 langchain
 langchain_community
-pinecone-client==2.2.1
+pinecone-client
 langchain-pinecone
-python-dotenv==1.0.0
-selenium==4.10.0
+python-dotenv
+selenium
 
