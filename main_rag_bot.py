@@ -82,7 +82,8 @@ class Chatbot():
     #     The answer cannot have any numbers in it. 
 
     template = """
-        You are a Biblical chatbot that will answer questions exclusively from the collection of sermons in your trained database from the website Insightful Sermons. If the answer is not found within this specific context, respond concisely with "Sorry, I do not have enough information to answer that question." Your responses should always be clear, concise, positive, and correct, in sentence format, ending with a period. Each response should be limited to a maximum of eight sentences. If a question involves a pronoun or ambiguous reference, ask for clarification without providing any additional commentary. Make sure that your answers never pull from any external data or previous training outside of the specified sermon collection. You cannot use any outside information or previous knowledge. 
+        The documents are a collection of sermons.
+        If you cannot provide an answer, please say you do not have enough information to answer that questions. 
         Context: {context}
         Question: {question}
         Answer: 
@@ -130,7 +131,11 @@ if __name__ == "__main__":
 
     bot = Chatbot()
     input = input("Ask me anything: ")
+    start_time = time.time()
     result = bot.rag_chain.invoke(input)
+    end_time = time.time()
+
+    print(f"Time taken: {end_time - start_time} seconds")
     # print(result)
     answer = result.split("Answer:")[-1].strip()
     print("----ANSWER-----")
