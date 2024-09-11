@@ -6,7 +6,7 @@ import numpy as np
 import json
 import random
 
-json_file_path = '/Users/lukekottom/Desktop/RAG LLM Final /sermon_data.json'  # Update this path
+json_file_path = 'sermon_data.json'
  
 def format_answer(input_text):
     # Split the input text by "Answer:"
