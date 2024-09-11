@@ -13,7 +13,11 @@ from langchain_core.documents import Document
 import json
 import os
 from dotenv import load_dotenv
-import streamlit as st
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+
+
 
 load_dotenv()
 
@@ -124,6 +128,30 @@ def format_answer(input_text):
 
     return formatted_result
 
+def find_most_similar_source(response, json_file_path):
+    # Load the JSON data
+    with open(json_file_path, 'r') as file:
+        sermon_data = json.load(file)
+    
+    # Extract contents and URLs
+    contents = [sermon['content'] for sermon in sermon_data.values()]
+    urls = [sermon['url'] for sermon in sermon_data.values()]
+    
+    # Add the response to the list of contents
+    all_texts = contents + [response]
+    
+    # Create TF-IDF vectorizer
+    vectorizer = TfidfVectorizer().fit_transform(all_texts)
+    
+    # Calculate cosine similarity
+    cosine_similarities = cosine_similarity(vectorizer[-1], vectorizer[:-1]).flatten()
+    
+    # Find the index of the most similar content
+    most_similar_index = np.argmax(cosine_similarities)
+    
+    # Return the URL of the most similar content
+    return urls[most_similar_index]
+
 
 if __name__ == "__main__":
 
@@ -132,5 +160,9 @@ if __name__ == "__main__":
     result = bot.rag_chain.invoke(input)
     # print(result)
     answer = result.split("Answer:")[-1].strip()
+    json_file_path = '/Users/lukekottom/Desktop/RAG LLM Final /sermon_data.json'  # Update this path
+    source_url = find_most_similar_source(format_answer(answer), json_file_path)
+    
     print("----ANSWER-----")
-    print(format_answer(answer))
+    print(answer)
+    print("\nSource:", source_url)
