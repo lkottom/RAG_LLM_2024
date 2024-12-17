@@ -17,8 +17,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-
-
 load_dotenv()
 
 class Chatbot():
@@ -134,6 +132,7 @@ def find_most_similar_source(response, json_file_path):
         sermon_data = json.load(file)
     
     # Extract contents and URLs
+    print(type(sermon_data))
     contents = [sermon['content'] for sermon in sermon_data.values()]
     urls = [sermon['url'] for sermon in sermon_data.values()]
     
