@@ -23,6 +23,11 @@ This project implements a Retrieval-Augmented Generation (RAG) chatbot that prov
 - Jupyter notebook for sermon data collection
 - Formats data into JSON files
 
+### Frontend (`index.html`)
+- Interactive chatbot interface using HTML, CSS, and JavaScript
+- Connects to Flask backend for responses
+- Open index.html in a web browser for UI testing
+
 ## Setup
 
 ### Dependencies
@@ -59,17 +64,29 @@ pip install -r requirements.txt
 python server.py
 ```
 
-4. Test API/frontend on developmental server:
+4. Test API:
 ```bash
 curl -X POST http://127.0.0.1:5001/chat \
   -H "Content-Type: application/json" \
   -d '{"message":"What is faith?"}'
 ```
 
+5. Running HTML Frontend
+- Open `index.html` directly in a browser for a web-based UI connected to the backend.
+
 ## Running Streamlit Chatbot UI
-Launch the user interface with:
+Launch the user interface from Sreamlit with:
 ```bash
 streamlit run mainUI.py
 ```
+
+## TODO 
+- Deploy the backend on a production server.
+- Develop the frontend for the website in the website's HTML code.
+
+## Notes
+- Make sure Pinecone and HuggingFace API keys are set up before running the bot.
+- Adjust file paths for JSON data in scripts if needed.
+- For additional features, edit prompt templates in main_rag_bot.py and server.py.
 
 
