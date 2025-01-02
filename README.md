@@ -28,6 +28,7 @@ This project implements a Retrieval-Augmented Generation (RAG) chatbot that prov
 ### Dependencies
 ```bash
 pip install -r requirements.txt
+```
 
 ## Setup Environment Variables
 
@@ -36,3 +37,4 @@ pip install -r requirements.txt
 ```bash 
 PINECONE_API_KEY=<your-pinecone-api-key>
 HUGGINGFACE_ACCESS_TOKEN=<your-huggingface-access-token>
+```
