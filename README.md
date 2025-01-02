@@ -38,3 +38,38 @@ pip install -r requirements.txt
 PINECONE_API_KEY=<your-pinecone-api-key>
 HUGGINGFACE_ACCESS_TOKEN=<your-huggingface-access-token>
 ```
+
+## API Endpoints
+- GET /: Welcome message
+- POST /chat:
+    - Input: {"message": "your question"}
+    - Output: Chatbot response with sources
+
+## Quick Start 
+1. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+2. Scrape the webside 
+- Open scraping.ipynb in Jupyter Notebook/Lab
+- Execute cells sequentially to gather sermon data
+
+3. Start backend:
+```bash
+python server.py
+```
+
+4. Test API/frontend on developmental server:
+```bash
+curl -X POST http://127.0.0.1:5001/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message":"What is faith?"}'
+```
+
+## Running Streamlit Chatbot UI
+Launch the user interface with:
+```bash
+streamlit run mainUI.py
+```
+
+
